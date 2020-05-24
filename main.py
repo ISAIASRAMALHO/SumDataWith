@@ -16,18 +16,21 @@ def AnoBisexto( ano ):
 y = input( 'Digite um ano para saber se é bisexto: ');
 
 
-meses       = list( range(1,13));
+meses       = list( range(1, 13) );
 dias        = [ 31, AnoBisexto(y), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-meses_dias  = [ [],[],[],[],[],[],[],[],[],[],[],[] ];
+meses_dias  = [ ];
+
 
 
 
 
 for m in meses:
-    for d in range(dias[m]):
-        meses_dias[m] = d;
+    for d in range( dias[m] ):
+        meses_dias.append(d);
 
 
 print( meses );
+print('-'*20);
 print( dias );
+print('-'*20);
 print( meses_dias );
