@@ -21,7 +21,7 @@ y = input( 'Digite um ano para saber se é bisexto: ');
 
 meses       = list( range(1, 13) );
 dias        = [ 31, fev(y), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-meses_dias  = [];
+meses_dias  = [ [],[],[],[],[],[],[],[],[],[],[],[] ];
 
 
 
