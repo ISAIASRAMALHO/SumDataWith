@@ -17,27 +17,25 @@ def fev( ano ):
     return AnoBisexto( ano);
 
 y = input( 'Digite um ano para saber se é bisexto: ');
+v = int( input('Informe o valor em que a soma e dia+mes+ano coincida: ') );
 
-
+s, t = 0, 0;
 meses       = list( range(1, 13) );
 dias        = [ 31, fev(y), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 meses_dias  = [ [],[],[],[],[],[],[],[],[],[],[],[] ];
 
 
-
-
-
 for m in meses:
     for d in range(1, dias[m-1]+1 ):
-        meses_dias.append(d);
+        meses_dias[m-1].append(d);
         
 
-print( meses_dias)
+# SOMAR CADA DATA DO CALENDARIO DO ANO SELECIONADO.
 
+for m in meses:
+    for d in range(1, meses_dias[m-1][m-1]):
+        s = d + m + int(y);
+        if s == v:
+            t=t+1;
 
-
-#print( meses );
-#print('-'*20);
-#print( dias );
-#print('-'*20);
-#print( meses_dias );
+print( t);
