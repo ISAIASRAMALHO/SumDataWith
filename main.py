@@ -2,6 +2,7 @@
 # EXEMPLO:  31/10/2007 = 3 + 1 + 1 +0 + 2 + 0 + 0 + 7   = 14
 # PREPARANDO
 
+from datetime import datetime
 
 def AnoBisexto( ano ):
     i_ano = int(ano)
@@ -25,6 +26,7 @@ sd, sm, sa = 0,  0, 0
 sd2, sm2, sa2 = '', '', ''
 t = 0
 dt = ''
+ano_atual = datetime.today().year
 meses       = ['01','02','03','04','05','06','07','08','09','10','11','12']
 dias        = [ "31", fev(y), "31", "30", "31", "30", "31", "31", "30", "31", "30", "31" ]
 calend  = [ [],[],[],[],[],[],[],[],[],[],[],[] ]
@@ -42,7 +44,6 @@ for m in meses:
             sa = '0'+str(d)
         calend[sd].append(sa)
 
-
 for m in meses:
     sd = int( m ) -1
     sm = int( dias[sd])
@@ -56,4 +57,11 @@ for m in meses:
             print( 'Data correspondente: {}'.format(dt) )
 
 print('')
-print( 'O ano de {} tem {} dias em que a soma dos algarismos da data é igual a {} '.format(y, len(compara), v))
+if int(y) < ano_atual:
+    conjunga_tem = 'tinha'
+elif int(y) > ano_atual:
+    conjunga_tem = 'terá'
+else:
+    conjunga_tem = 'tem'
+
+print( 'O ano de {} {} {} dias em que a soma dos algarismos da data é igual a {} '.format(y, conjunga_tem, len(compara), v))
