@@ -19,49 +19,40 @@ def AnoBisexto( ano ):
 def fev( ano ):
     return AnoBisexto( ano);
 
-y = input( 'Digite um ano para saber se é bisexto: ');
+a = input( 'Digite um ano para saber se é bisexto: ');
 v = int( input('Informe o valor em que a soma e dia+mes+ano coincida: ') );
 
-sd, sm, sa = 0,  0, 0
-sd2, sm2, sa2 = '', '', ''
-t = 0
-dt = ''
+sm = 0
 ano_atual = datetime.today().year
+
+# REFATORANDO PARTE DO CÓDIGO USANDO DICIONARIO
+
 meses       = ['01','02','03','04','05','06','07','08','09','10','11','12']
-dias        = [ "31", fev(y), "31", "30", "31", "30", "31", "31", "30", "31", "30", "31" ]
-calend  = [ [],[],[],[],[],[],[],[],[],[],[],[] ]
+dias        = [ "31", fev(a), "31", "30", "31", "30", "31", "31", "30", "31", "30", "31" ]
+calend  = {}
 compara = []
 
 
 # REPETIR INSTRUÇÕES 12 VEZES. 
 for m in meses:
-    sd = int( m) - 1
-    sm = int( dias[sd] )
-# REPETIR INSTRUÇÕES TOTAL DE DIAS DO MÊS DA REPETIÇÃO ATUAL
-    for d in range(1, sm+1):
-        sa = str(d)
+    calend[m] = [ v for v in range(1, int( dias[ int(m)-1 ] ) +1   )]
+    # LOOP DOS DIAS
+    for d in range(1, len( calend[ m ] ) + 1 ):
+        sm = d + int( m[0] )+ int( m[1]) + int( a[0]) +int( a[1]) +int( a[2]) +int( a[3])
+        datando = str(d)  + '/' + m + '/' + a
         if d < 10:
-            sa = '0'+str(d)
-        calend[sd].append(sa)
+            datando = '0'+datando
+        if sm == v:
+            compara.append(datando )
+        print(compara)
 
-for m in meses:
-    sd = int( m ) -1
-    sm = int( dias[sd])
-    for d in range(1, sm+1 ):
-        sd2 = calend[sd][d-1]
-        sm2 = dias[sd]
-        dt = sd2 + '/' + m + '/' + y
-        t = int( sd2[0]) + int( sd2[1]) + int( m[0]) + int( m[1]) + int( y[0]) + int( y[1]) + int( y[2]) + int( y[3])
-        if t == v:
-            compara.append(dt)
-            print( 'Data correspondente: {}'.format(dt) )
 
 print('')
-if int(y) < ano_atual:
+if int(a) < ano_atual:
     conjunga_tem = 'tinha'
-elif int(y) > ano_atual:
+elif int(a) > ano_atual:
     conjunga_tem = 'terá'
 else:
     conjunga_tem = 'tem'
 
-print( 'O ano de {} {} {} dias em que a soma dos algarismos da data é igual a {} '.format(y, conjunga_tem, len(compara), v))
+print( 'O ano de {} {} {} dias em que a soma dos algarismos da data é igual a {} '.format(a, conjunga_tem, len(compara), v))
